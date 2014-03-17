@@ -22,7 +22,14 @@ def generatePassword(prefix, indexSuffix):
 
 def generateRandomPassword(size=8,chars=string.ascii_uppercase + string.digits):
 	return ''.join(random.choice(chars) for _ in range(size))
-
+'''
+We'll create the login file with strictly formed passwords, as requested by the user.
+@param emailFile:	The file of just email addresses to be processed.
+@param POLLogins:	The complete output file.
+@param testPrefix:	The formatted password for the user to adhere to (will be passed in on the command line)
+@param testIndexSuffix:	The numerical index to append to the passwords that will be generated. Usually you would start
+						at 1
+'''
 def createLoginFileWithLikePaswords(emailFile,POLLogins,testPrefix,testIndexSuffix):
 	file = open(emailFile,'r')
 	logins = open(POLLogins,'w')
@@ -32,6 +39,11 @@ def createLoginFileWithLikePaswords(emailFile,POLLogins,testPrefix,testIndexSuff
 		logins.write(getUserName(testAddress) + "\t" + generatePassword(testPrefix,testIndexSuffix) + "\t" + testAddress + "\n")
 	return logins
 
+'''
+We'll create the login file with random passwords if that is what's requested by the user.
+@param emailFile:	The file of just email addresses to be processed.
+@param POLLogins:	The completed output file.
+'''
 def createLoginFileWithRandomPasswords(emailFile,POLLogins):
 	file = open(emailFile,'r')
 	logins = open(POLLogins,'w')
