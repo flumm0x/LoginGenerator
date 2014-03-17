@@ -15,11 +15,19 @@ def getUserName(emailAddress):
 	userName = emailAddress.split("@")[0]	#leave the domain off	
 	return userName
 
-#We'll need to generate a password for a user, taking it from the domain is not reliable, user input would be better for this
+'''
+We'll generate a strict password based off of a basic input. Make both a string
+@param prefix:	The prefix for the password.
+@param indexSuffix:	The numerical index to generate.
+'''
 def generatePassword(prefix, indexSuffix):
 	password = str(prefix) + str(indexSuffix)	#convert both to string and concatenate - in runtime the indexSuffix would be incremented
 	return password
-
+'''
+Generate a password using a random seed generator.
+@param size:	Set to eight characters, can be increased with impunity
+@param chars:	Set the chars variable to strict ASCII and to uppercase only, concatenate with numbers. Both set as a string
+'''
 def generateRandomPassword(size=8,chars=string.ascii_uppercase + string.digits):
 	return ''.join(random.choice(chars) for _ in range(size))
 '''
@@ -27,8 +35,7 @@ We'll create the login file with strictly formed passwords, as requested by the 
 @param emailFile:	The file of just email addresses to be processed.
 @param POLLogins:	The complete output file.
 @param testPrefix:	The formatted password for the user to adhere to (will be passed in on the command line)
-@param testIndexSuffix:	The numerical index to append to the passwords that will be generated. Usually you would start
-						at 1
+@param testIndexSuffix:	The numerical index to append to the passwords that will be generated. Usually you would start at 1
 '''
 def createLoginFileWithLikePaswords(emailFile,POLLogins,testPrefix,testIndexSuffix):
 	file = open(emailFile,'r')
